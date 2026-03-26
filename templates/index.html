@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Sản phẩm Lazada</title>
+    <style>
+        .product { border: 1px solid #ddd; padding: 12px; margin: 8px; width: 280px; float: left; }
+        .product img { width: 100%; height: auto; display: block; }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+</head>
+<body>
+    <h1>Sản phẩm Lazada</h1>
+    <p>Hiển thị {{ products|length }} sản phẩm.</p>
+
+    <div class="clearfix">
+        {% for p in products %}
+            <div class="product">
+                <h3>{{ p.title or 'Không có tiêu đề' }}</h3>
+                <p><strong>Giá:</strong> {{ p.price or 'Không rõ' }}</p>
+                <p><strong>Đã bán:</strong> {{ p.sold or 'Không rõ' }}</p>
+                <p><strong>Đánh giá:</strong> {{ p.rating or 'Chưa có' }}</p>
+                {% if p.img %}
+                    <img src="{{ p.img }}" alt="{{ p.title }}" />
+                {% endif %}
+                <p><a href="{{ p.link }}" target="_blank">Xem sản phẩm</a></p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
